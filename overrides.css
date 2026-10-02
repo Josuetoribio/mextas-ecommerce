@@ -1,0 +1,29 @@
+/* Ajustes de la versión publicada en mextas.com/commerce/.
+   El export original no se toca: el build enlaza este archivo al final del <head>.
+   Objetivo: que ninguna sección provoque scroll horizontal (móviles y portátiles de 1280–1366 px). */
+
+/* Pie: la columna «Suscríbete» (min-width 220 px en línea) y el campo de correo no encogían
+   y, en pantallas de 1280–1366 px, sacaban el botón de suscripción fuera de la página. */
+footer > .mx-container[style*="grid-template-columns: minmax(220px"] > * { min-width: 0 !important; }
+footer form > * { min-width: 0; }
+
+@media (max-width: 480px) {
+  /* Pie en móvil: enlaces en dos columnas; la marca y la suscripción, a todo el ancho. */
+  footer > .mx-container[style*="grid-template-columns: minmax(220px"] { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
+  footer > .mx-container[style*="grid-template-columns: minmax(220px"] > :first-child,
+  footer > .mx-container[style*="grid-template-columns: minmax(220px"] > :last-child { grid-column: 1 / -1; }
+  /* Títulos de sección con enlace («Colecciones · Ver colecciones»): el enlace baja si no cabe. */
+  .mx-container > div[style*="justify-content: space-between"][style*="align-items: flex-end"] { flex-wrap: wrap; }
+}
+
+/* Barra de anuncios: en pantallas muy estrechas el mensaje se recorta con «…». */
+@media (max-width: 374px) {
+  div[style*="--announce-h"] .mx-container > span { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+}
+
+@media (max-width: 360px) {
+  /* Rejillas con mínimos de 240–300 px (ofertas, packs, boletín): una sola columna. */
+  .mx-container[style*="grid-template-columns: repeat(auto"] { grid-template-columns: minmax(0, 1fr) !important; }
+  /* Pie: los logotipos de pago pueden pasar a otra línea. */
+  footer div:has(> span[style*="padding: 6px 10px"]) { flex-wrap: wrap; }
+}
