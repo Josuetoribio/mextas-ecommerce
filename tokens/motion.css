@@ -1,0 +1,11 @@
+:root{
+--ease-out:cubic-bezier(.2,.7,.3,1); /* @kind other */--ease-in-out:cubic-bezier(.65,0,.35,1); /* @kind other */
+--dur-1:120ms; /* @kind other */
+--dur-2:200ms; /* @kind other */
+--dur-3:320ms; /* @kind other */
+--dur-4:520ms; /* @kind other */
+--dur-slide:700ms; /* @kind other */
+--t-fast:all var(--dur-1) var(--ease-out);
+--t-base:all var(--dur-2) var(--ease-out);
+--t-media:transform var(--dur-4) var(--ease-out);
+}

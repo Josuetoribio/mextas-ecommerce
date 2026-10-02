@@ -1,0 +1,42 @@
+<!-- @dsCard group="Storefront" viewport="1440x900" name="MEXTAS Storefront" subtitle="Home, catálogo, producto, carrito y checkout — demo interactiva" -->
+<!-- @startingPoint section="Storefront" subtitle="Full ecommerce storefront (home → checkout)" viewport="1440x900" -->
+<!doctype html><html lang="es"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>MEXTAS — Tecnología, diseño y funcionalidad</title>
+<link rel="stylesheet" href="../../styles.css">
+<style>
+.mx-grid-5{display:grid;gap:var(--grid-gap);grid-template-columns:repeat(5,minmax(0,1fr))}
+.mx-grid-4{display:grid;gap:var(--grid-gap);grid-template-columns:repeat(4,minmax(0,1fr))}
+.mx-grid-3{display:grid;gap:var(--grid-gap);grid-template-columns:repeat(3,minmax(0,1fr))}
+.mx-catalog{display:grid;gap:34px;grid-template-columns:250px minmax(0,1fr);align-items:start}
+.mx-pdp{display:grid;gap:44px;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);align-items:start;padding-bottom:var(--space-12)}
+.mx-two-col{display:grid;gap:40px;grid-template-columns:minmax(0,1fr) 360px;align-items:start}
+.mx-account{display:grid;gap:30px;grid-template-columns:250px minmax(0,1fr);align-items:start}
+.mx-summary{border:1px solid var(--border-subtle);padding:24px;position:sticky;top:110px;background:var(--paper)}
+.mx-fields{display:grid;gap:14px;grid-template-columns:1fr 1fr}
+.mx-benefits{display:grid;gap:24px;grid-template-columns:repeat(4,minmax(0,1fr));border-top:1px solid var(--border-subtle);border-bottom:1px solid var(--border-subtle);padding-block:var(--space-8)}
+.mx-only-mobile{display:none !important}
+@keyframes mx-page{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+@media(max-width:1400px){.mx-grid-5{grid-template-columns:repeat(4,minmax(0,1fr))}}
+@media(max-width:1200px){.mx-grid-5,.mx-grid-4{grid-template-columns:repeat(3,minmax(0,1fr))}.mx-two-col{grid-template-columns:minmax(0,1fr)}.mx-summary{position:static}}
+@media(max-width:1000px){.mx-catalog{grid-template-columns:minmax(0,1fr)}.mx-filters{display:none}.mx-only-mobile{display:inline-flex !important}.mx-pdp{grid-template-columns:minmax(0,1fr);gap:30px}.mx-account{grid-template-columns:minmax(0,1fr)}.mx-benefits{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:760px){.mx-grid-5,.mx-grid-4,.mx-grid-3{grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--grid-gap-sm)}.mx-fields{grid-template-columns:1fr}.mx-benefits{grid-template-columns:1fr}}
+</style>
+<script src="https://unpkg.com/lucide@0.460.0/dist/umd/lucide.min.js"></script>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../../_ds_bundle.js"></script>
+</head><body>
+<div id="root"></div>
+<script type="text/babel" src="data.jsx"></script>
+<script type="text/babel" src="Store.jsx"></script>
+<script type="text/babel" src="Overlays.jsx"></script>
+<script type="text/babel" src="Home.jsx"></script>
+<script type="text/babel" src="Catalog.jsx"></script>
+<script type="text/babel" src="ProductPage.jsx"></script>
+<script type="text/babel" src="Checkout.jsx"></script>
+<script type="text/babel" src="Account.jsx"></script>
+<script type="text/babel" src="Content.jsx"></script>
+<script type="text/babel" src="App.jsx"></script>
+</body></html>

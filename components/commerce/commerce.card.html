@@ -1,0 +1,40 @@
+<!-- @dsCard group="Components" viewport="700x560" name="Commerce — product, category, promo, pack" subtitle="Grid tile, circular category, promo banner, cart line" -->
+<!doctype html><html lang="es"><head><meta charset="utf-8">
+<link rel="stylesheet" href="../../styles.css">
+<script src="https://unpkg.com/lucide@0.460.0/dist/umd/lucide.min.js"></script>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../../_ds_bundle.js"></script>
+<style>body{padding:22px;background:var(--paper)}</style>
+</head><body><div id="root"></div>
+<script type="text/babel">
+const { ProductCard, CategoryTile, PromoBanner, BenefitItem, CartLine, OrderTimeline } = window.MEXTASDesignSystem_3a0f0e;
+const P={id:'1',slug:'mochila-urban-pro',name:'Mochila Urban Pro',category:'Mochilas',price:1899,compareAtPrice:2299,rating:4.7,reviews:128,image:'../../assets/cat-mochilas.png',isNew:true,stock:4};
+const A={id:'2',slug:'audifonos',name:'Audífonos MEXTAS Sound',category:'Audio',price:1099,compareAtPrice:1299,rating:4.5,reviews:94,image:'../../assets/cat-audio.png',isBestSeller:true};
+function Card(){
+ const [fav,setFav]=React.useState(false);
+ return (<div style={{display:'grid',gap:22}}>
+  <div style={{display:'grid',gridTemplateColumns:'1fr 1fr 1.25fr',gap:18,alignItems:'start'}}>
+    <ProductCard product={P} onAdd={()=>{}} onQuickView={()=>{}} wishlisted={fav} onToggleWishlist={()=>setFav(!fav)}/>
+    <ProductCard product={A} onAdd={()=>{}} onQuickView={()=>{}}/>
+    <div style={{display:'grid',gap:16}}>
+      <div style={{display:'flex',gap:18}}>
+        <CategoryTile name="Mochilas" image="../../assets/cat-mochilas.png"/>
+        <CategoryTile name="Audio" image="../../assets/cat-audio.png"/>
+        <CategoryTile name="Ofertas" icon="percent" active/>
+      </div>
+      <PromoBanner theme="dark" title="Ofertas de temporada" kicker="Hasta" highlight="30% OFF" cta="Comprar ofertas" image="../../assets/banner-packs.png" height={190}/>
+      <CartLine item={{id:'1',name:'Mochila Urban Pro',variant:'Negro',price:1899,qty:1,image:'../../assets/cat-mochilas.png'}} onQty={()=>{}} onRemove={()=>{}}/>
+    </div>
+  </div>
+  <div style={{display:'grid',gridTemplateColumns:'repeat(4,1fr)',gap:20,borderTop:'1px solid var(--border-subtle)',paddingTop:20}}>
+    <BenefitItem icon="truck" title="Envío gratis" description="En compras mayores a $1,499 MXN"/>
+    <BenefitItem icon="rotate-ccw" title="Devoluciones fáciles" description="Tienes 30 días para devolver tu producto"/>
+    <BenefitItem icon="shield-check" title="Compra segura" description="Tus pagos están protegidos con encriptación SSL"/>
+    <BenefitItem icon="headphones" title="Atención personalizada" description="Estamos para ayudarte en lo que necesites"/>
+  </div>
+  <OrderTimeline current={3}/>
+ </div>);}
+ReactDOM.createRoot(document.getElementById('root')).render(<Card/>);
+</script></body></html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<!-- @template name="MEXTAS storefront page" description="Announcement bar, header, editorial hero, product grid, benefits and footer — the MEXTAS page skeleton." -->
+<helmet><script src="./ds-base.js"></script><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""><script src="https://unpkg.com/lucide@0.460.0/dist/umd/lucide.min.js"></script><style>body{margin:0;background:#fff}</style></helmet>
+<div style="font-family:Manrope,Helvetica Neue,Arial,sans-serif;color:#000;letter-spacing:-0.015em">
+<x-import component-from-global-scope="MEXTASDesignSystem_3a0f0e.AnnouncementBar" messages="{{ announcements }}" links="{{ utilityLinks }}" hint-size="100%,38px"></x-import>
+<x-import component-from-global-scope="MEXTASDesignSystem_3a0f0e.SiteHeader" nav="{{ nav }}" cart-count="{{ cartCount }}" wishlist-count="2" hint-size="100%,116px"></x-import>
+<section style="position:relative;background:#F2F2F2;overflow:hidden;min-height:560px;display:flex;align-items:center">
+<img src="../../assets/hero-main.png" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:right center">
+<span style="position:absolute;inset:0;background:linear-gradient(90deg,rgba(255,255,255,.96) 0%,rgba(255,255,255,.86) 34%,rgba(255,255,255,.1) 62%,rgba(255,255,255,0) 100%)"></span>
+<div style="position:relative;width:100%;max-width:1360px;margin-inline:auto;padding:70px 40px;display:flex;flex-direction:column;gap:22px;align-items:flex-start">
+<span style="background:#000;color:#fff;padding:8px 14px;font:700 10px/1 Archivo,sans-serif;letter-spacing:.09em;text-transform:uppercase">Nueva colección</span>
+<h1 style="margin:0;font:700 clamp(44px,5.6vw,80px)/0.98 Archivo,sans-serif;letter-spacing:-0.035em;max-width:13ch">Diseño que te acompaña.</h1>
+<p style="margin:0;font:500 17px/1.6 Manrope,sans-serif;color:#5C5C5C;max-width:30ch">Tecnología, estilo y funcionalidad en cada detalle.</p>
+<x-import component-from-global-scope="MEXTASDesignSystem_3a0f0e.Button" size="lg" hint-size="200px,54px">Comprar ahora</x-import>
+</div>
+</section>
+<section style="max-width:1360px;margin-inline:auto;padding:80px 40px 0">
+<div style="display:flex;align-items:flex-end;justify-content:space-between;gap:24px;margin-bottom:32px">
+<h2 style="margin:0;font:700 24px/1.2 Archivo,sans-serif;letter-spacing:.09em;text-transform:uppercase">Productos destacados</h2>
+<a href="#" style="font:700 12px/1 Archivo,sans-serif;letter-spacing:.09em;text-transform:uppercase;color:#000;text-decoration:none;border-bottom:1px solid #000;padding-bottom:3px">Ver todos →</a>
+</div>
+<div style="display:grid;gap:20px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))">
+<sc-for list="{{ products }}" as="p" hint-placeholder-count="4">
+<x-import component-from-global-scope="MEXTASDesignSystem_3a0f0e.ProductCard" product="{{ p }}" compact="{{ true }}" hint-size="100%,420px"></x-import>
+</sc-for>
+</div>
+</section>
+<section style="max-width:1360px;margin-inline:auto;padding:80px 40px">
+<div style="display:grid;gap:24px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));border-top:1px solid #E9E9E9;border-bottom:1px solid #E9E9E9;padding-block:32px">
+<sc-for list="{{ benefits }}" as="b" hint-placeholder-count="4">
+<x-import component-from-global-scope="MEXTASDesignSystem_3a0f0e.BenefitItem" icon="{{ b.icon }}" title="{{ b.title }}" description="{{ b.description }}" hint-size="100%,80px"></x-import>
+</sc-for>
+</div>
+</section>
+<x-import component-from-global-scope="MEXTASDesignSystem_3a0f0e.SiteFooter" columns="{{ footerColumns }}" hint-size="100%,460px"></x-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;announcements&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;string[]&quot;,&quot;default&quot;:[&quot;Envío gratis en compras mayores a $1,499 MXN&quot;]},&quot;cartCount&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:2,&quot;min&quot;:0,&quot;max&quot;:20,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Header&quot;}}">
+class Component extends DCLogic {
+  componentDidMount() { if (window.lucide) window.lucide.createIcons(); }
+  componentDidUpdate() { if (window.lucide) window.lucide.createIcons(); }
+  renderVals() {
+    const img = (n) => '../../assets/' + n;
+    return {
+      announcements: this.props.announcements ?? ['Envío gratis en compras mayores a $1,499 MXN', '12 meses sin intereses con tarjetas participantes'],
+      utilityLinks: [{ label: 'México (MXN $)', caret: true }, { label: 'Ayuda' }, { label: 'Rastreo de pedido' }],
+      nav: [{ key: 'nuevos', label: 'Nuevos' }, { key: 'hombres', label: 'Hombres' }, { key: 'mujeres', label: 'Mujeres' }, { key: 'accesorios', label: 'Accesorios' }, { key: 'tecnologia', label: 'Tecnología' }, { key: 'colecciones', label: 'Colecciones' }, { key: 'ofertas', label: 'Ofertas', highlight: true }, { key: 'blog', label: 'Blog' }],
+      cartCount: this.props.cartCount ?? 2,
+      products: [
+        { id: '1', name: 'Mochila Urban Pro', category: 'Mochilas', price: 1899, compareAtPrice: 2299, rating: 4.7, reviews: 128, image: img('cat-mochilas.png'), isNew: true, stock: 4 },
+        { id: '2', name: 'Audífonos MEXTAS Sound', category: 'Audio', price: 1099, compareAtPrice: 1299, rating: 4.5, reviews: 94, image: img('cat-audio.png'), isBestSeller: true, stock: 15 },
+        { id: '3', name: 'Smartwatch One', category: 'Wearables', price: 2499, rating: 4.6, reviews: 76, image: img('cat-wearables.png'), isNew: true, stock: 11 },
+        { id: '4', name: 'Termo Insulado 750ml', category: 'Botellas', price: 629, compareAtPrice: 699, rating: 4.6, reviews: 43, image: img('cat-botellas.png'), stock: 32 },
+      ],
+      benefits: [
+        { icon: 'truck', title: 'Envío gratis', description: 'En compras mayores a $1,499 MXN' },
+        { icon: 'rotate-ccw', title: 'Devoluciones fáciles', description: 'Tienes 30 días para devolver tu producto' },
+        { icon: 'shield-check', title: 'Compra segura', description: 'Tus pagos están protegidos con encriptación SSL' },
+        { icon: 'headphones', title: 'Atención personalizada', description: 'Estamos para ayudarte en lo que necesites' },
+      ],
+      footerColumns: [
+        { title: 'Comprar', links: [{ label: 'Nuevos' }, { label: 'Hombres' }, { label: 'Mujeres' }, { label: 'Accesorios' }, { label: 'Tecnología' }, { label: 'Ofertas' }] },
+        { title: 'Información', links: [{ label: 'Sobre nosotros' }, { label: 'Envíos y entregas' }, { label: 'Cambios y devoluciones' }, { label: 'Términos y condiciones' }, { label: 'Aviso de privacidad' }, { label: 'Preguntas frecuentes' }] },
+        { title: 'Mi cuenta', links: [{ label: 'Mi cuenta' }, { label: 'Mis pedidos' }, { label: 'Lista de deseos' }, { label: 'Direcciones' }, { label: 'Métodos de pago' }] },
+      ],
+    };
+  }
+}
+</script>
+</body>
+</html>

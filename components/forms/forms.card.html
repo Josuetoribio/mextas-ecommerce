@@ -1,0 +1,35 @@
+<!-- @dsCard group="Components" viewport="700x420" name="Forms — inputs, filters, variants" subtitle="Hairline fields, square checkboxes, variant swatches" -->
+<!doctype html><html lang="es"><head><meta charset="utf-8">
+<link rel="stylesheet" href="../../styles.css">
+<script src="https://unpkg.com/lucide@0.460.0/dist/umd/lucide.min.js"></script>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../../_ds_bundle.js"></script>
+<style>body{padding:22px;background:var(--paper)}.grid{display:grid;grid-template-columns:1fr 1fr;gap:22px 26px}</style>
+</head><body><div id="root"></div>
+<script type="text/babel">
+const { Input, Select, Checkbox, RadioCard, QuantityStepper, SwatchGroup } = window.MEXTASDesignSystem_3a0f0e;
+function Card(){
+ const [q,setQ]=React.useState(2); const [c,setC]=React.useState('Negro'); const [s,setS]=React.useState(true);
+ return (<div class="grid">
+  <div style={{display:'grid',gap:16}}>
+    <Input label="Correo electrónico" placeholder="tu@correo.com" icon="mail"/>
+    <Input label="Código postal" defaultValue="0680" error="Ingresa 5 dígitos"/>
+    <Select label="Ordenar por" options={['Relevancia','Más vendidos','Precio menor','Precio mayor','Más recientes']}/>
+  </div>
+  <div style={{display:'grid',gap:16}}>
+    <div><div style={{font:'var(--label-sm)',letterSpacing:'var(--track-label)',textTransform:'uppercase',color:'var(--text-secondary)',marginBottom:6}}>Categoría</div>
+      <Checkbox label="Mochilas" count={12} checked onChange={()=>{}}/>
+      <Checkbox label="Audio" count={9} onChange={()=>{}}/>
+      <Checkbox label="Wearables" count={7} onChange={()=>{}}/></div>
+    <SwatchGroup label="Color" value={c} onChange={setC} options={[{name:'Negro',hex:'#0A0A0A'},{name:'Gris',hex:'#8A8A8A'},{name:'Azul',hex:'#1F2E4A'}]}/>
+    <div style={{display:'flex',gap:14,alignItems:'center'}}><QuantityStepper value={q} onChange={setQ}/><SwatchGroup type="text" value="M" options={['S','M','L']} onChange={()=>{}}/></div>
+  </div>
+  <div style={{gridColumn:'1 / -1',display:'grid',gridTemplateColumns:'1fr 1fr',gap:12}}>
+    <RadioCard icon="truck" title="Envío estándar" description="2–4 días hábiles" meta="Gratis" selected={s} onSelect={()=>setS(true)}/>
+    <RadioCard icon="zap" title="Envío express" description="24 horas" meta="$149 MXN" selected={!s} onSelect={()=>setS(false)}/>
+  </div>
+ </div>);}
+ReactDOM.createRoot(document.getElementById('root')).render(<Card/>);
+</script></body></html>

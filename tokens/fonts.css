@@ -1,0 +1,4 @@
+/* MEXTAS webfonts. Served from Google Fonts — no licensed binaries were provided with the brief.
+   Archivo = display / logo / UI labels. Manrope = body & product copy. */
+@import url("https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap");
+:root{--font-display:"Archivo","Helvetica Neue",Arial,sans-serif;--font-text:"Manrope","Helvetica Neue",Arial,sans-serif;--font-mono:ui-monospace,"SFMono-Regular",Menlo,monospace}

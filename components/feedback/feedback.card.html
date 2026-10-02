@@ -1,0 +1,33 @@
+<!-- @dsCard group="Components" viewport="700x380" name="Feedback — toast, drawer, empty, skeleton" subtitle="Mini-cart toast, cart drawer, zero states, loaders" -->
+<!doctype html><html lang="es"><head><meta charset="utf-8">
+<link rel="stylesheet" href="../../styles.css">
+<script src="https://unpkg.com/lucide@0.460.0/dist/umd/lucide.min.js"></script>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../../_ds_bundle.js"></script>
+<style>body{padding:22px;background:var(--paper)}</style>
+</head><body><div id="root"></div>
+<script type="text/babel">
+const { Toast, Drawer, EmptyState, Skeleton, Button, CartLine, Modal } = window.MEXTASDesignSystem_3a0f0e;
+function Card(){
+ const [open,setOpen]=React.useState(false);
+ return (<div style={{display:'grid',gridTemplateColumns:'1.1fr 1fr',gap:24,position:'relative',minHeight:330}}>
+  <div style={{display:'grid',gap:18,alignContent:'start'}}>
+    <div style={{position:'relative',border:'1px solid var(--border-subtle)',boxShadow:'var(--shadow-pop)'}}>
+      <div style={{display:'flex',alignItems:'center',gap:10,padding:'14px 16px',borderBottom:'1px solid var(--border-subtle)',font:'var(--label-md)',letterSpacing:'var(--track-label)',textTransform:'uppercase'}}>✓ Producto agregado al carrito</div>
+      <div style={{display:'flex',gap:12,padding:16}}>
+        <div style={{width:64,height:72,background:'var(--surface-media)',overflow:'hidden'}}><img src="../../assets/cat-audio.png" style={{width:'100%',height:'100%',objectFit:'cover'}}/></div>
+        <div><div style={{font:'var(--body-sm)',fontWeight:600}}>Audífonos MEXTAS Sound</div><div style={{font:'var(--body-sm)',color:'var(--text-secondary)',marginTop:4}}>$1,099 MXN</div></div>
+      </div>
+      <div style={{display:'flex',gap:8,padding:'0 16px 16px'}}><Button size="sm" variant="secondary">Ver carrito</Button><Button size="sm">Finalizar compra</Button></div>
+    </div>
+    <div style={{display:'grid',gap:10}}><Skeleton height={120}/><Skeleton width="70%" height={13}/><Skeleton width="40%" height={13}/></div>
+  </div>
+  <EmptyState icon="heart" title="Aún no tienes favoritos" description="Guarda los productos que te gusten para encontrarlos aquí." action={<Button variant="secondary" onClick={()=>setOpen(true)}>Abrir carrito</Button>} style={{border:'1px solid var(--border-subtle)',padding:'40px 20px'}}/>
+  <Drawer open={open} title="Tu carrito" onClose={()=>setOpen(false)} footer={<Button fullWidth size="lg">Proceder al pago</Button>}>
+    <CartLine item={{id:'1',name:'Mochila Urban Pro',variant:'Negro',price:1899,qty:1,image:'../../assets/cat-mochilas.png'}} onQty={()=>{}} onRemove={()=>{}}/>
+  </Drawer>
+ </div>);}
+ReactDOM.createRoot(document.getElementById('root')).render(<Card/>);
+</script></body></html>
