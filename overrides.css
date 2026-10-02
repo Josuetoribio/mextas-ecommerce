@@ -16,8 +16,13 @@ footer form > * { min-width: 0; }
   .mx-container > div[style*="justify-content: space-between"][style*="align-items: flex-end"] { flex-wrap: wrap; }
 }
 
-/* Barra de anuncios: en pantallas muy estrechas el mensaje se recorta con «…». */
-@media (max-width: 374px) {
+/* Barra de anuncios en móvil: el menú «México · Ayuda · Rastreo de pedido» dejaba al mensaje
+   en una columna de ~90 px que se partía en varias líneas fuera de la barra y desbordaba la página.
+   En móvil se oculta ese menú (rastreo está en el menú móvil; ayuda y envíos, en el pie) y el
+   mensaje va centrado en una línea; en pantallas muy estrechas se recorta con «…». */
+@media (max-width: 600px) {
+  div[style*="--announce-h"] nav { display: none !important; }
+  div[style*="--announce-h"] .mx-container { justify-content: center !important; }
   div[style*="--announce-h"] .mx-container > span { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 }
 
