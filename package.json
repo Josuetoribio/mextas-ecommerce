@@ -1,0 +1,17 @@
+{
+  "name": "mextas-ecommerce",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Tienda en línea MEXTAS (demo e-commerce): build de producción para GitHub Pages",
+  "type": "module",
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "preview": "node scripts/preview.mjs"
+  },
+  "devDependencies": {
+    "@babel/standalone": "7.29.0"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
