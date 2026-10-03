@@ -141,46 +141,61 @@ Object.assign(__ds_scope, { Badge });
 // components/core/Icon.jsx
 try { (() => {
 function _extends() { return _extends = Object.assign ? Object.assign.bind() : function (n) { for (var e = 1; e < arguments.length; e++) { var t = arguments[e]; for (var r in t) ({}).hasOwnProperty.call(t, r) && (n[r] = t[r]); } return n; }, _extends.apply(null, arguments); }
-/* Lucide icons, loaded from CDN (see readme → ICONOGRAPHY). Renders a placeholder
-   element that lucide's UMD build swaps for an inline SVG. */
+/* Lucide icons, loaded from CDN (see readme → ICONOGRAPHY). React renders the SVG itself
+   from lucide's icon data. lucide.createIcons() would swap the element React owns for a new
+   <svg>, and React then crashes the page when it removes or updates that icon. */
+const toPascalCase = s => s.replace(/(\w)(\w*)(_|-|\s*)/g, (g0, g1, g2) => g1.toUpperCase() + g2.toLowerCase());
 function Icon({
   name,
   size = 20,
   strokeWidth = 1.6,
   color = 'currentColor',
   style,
+  className,
   ...rest
 }) {
-  const ref = React.useRef(null);
+  const [, redraw] = React.useReducer(n => n + 1, 0);
   React.useEffect(() => {
-    const draw = () => window.lucide && window.lucide.createIcons({
-      nameAttr: 'data-lucide',
-      attrs: {},
-      icons: undefined
-    });
-    if (window.lucide) draw();else {
-      const t = setInterval(() => {
-        if (window.lucide) {
-          draw();
-          clearInterval(t);
-        }
-      }, 120);
-      return () => clearInterval(t);
-    }
-  }, [name]);
-  return /*#__PURE__*/React.createElement("i", _extends({
-    ref: ref,
-    "data-lucide": name,
+    if (window.lucide) return;
+    const t = setInterval(() => {
+      if (window.lucide) {
+        clearInterval(t);
+        redraw();
+      }
+    }, 120);
+    return () => clearInterval(t);
+  }, []);
+  const node = window.lucide && window.lucide.icons[toPascalCase(name)];
+  const css = {
+    display: 'inline-flex',
+    width: size,
+    height: size,
+    color,
+    strokeWidth,
+    ...style
+  };
+  if (!node) return /*#__PURE__*/React.createElement("i", _extends({
     "aria-hidden": "true",
-    style: {
-      display: 'inline-flex',
-      width: size,
-      height: size,
-      color,
-      strokeWidth,
-      ...style
-    }
+    className: className,
+    style: css
   }, rest));
+  return /*#__PURE__*/React.createElement("svg", _extends({
+    xmlns: "http://www.w3.org/2000/svg",
+    width: "24",
+    height: "24",
+    viewBox: "0 0 24 24",
+    fill: "none",
+    stroke: "currentColor",
+    strokeWidth: "2",
+    strokeLinecap: "round",
+    strokeLinejoin: "round",
+    "aria-hidden": "true",
+    className: ['lucide', 'lucide-' + name, className].filter(Boolean).join(' '),
+    style: css
+  }, rest), node[2].map(([tag, attrs], i) => React.createElement(tag, {
+    key: i,
+    ...attrs
+  })));
 }
 Object.assign(__ds_scope, { Icon });
 })(); } catch (e) { __ds_ns.__errors.push({ path: "components/core/Icon.jsx", error: String((e && e.message) || e) }); }

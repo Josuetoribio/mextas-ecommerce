@@ -1,7 +1,7 @@
 # Despliegue: MEXTAS · Storefront (e-commerce)
 
 Este repositorio contiene el export original de Claude Design de la landing **MEXTAS · Storefront (e-commerce)**.
-Los archivos originales no se modifican. El build genera una versión de producción en `dist/`
+Los archivos originales no se modifican, salvo el componente `Icon` (ver «Ajustes propios»). El build genera una versión de producción en `dist/`
 y GitHub Actions la publica en GitHub Pages en cada `push` a `main`.
 
 - **URL pública:** https://mextas.com/commerce/
@@ -42,6 +42,14 @@ Las correcciones de la versión publicada que no vienen del export, como evitar 
 horizontal en móviles, van en `overrides.css`. Al estar fuera de `ui_kits/`, una nueva
 exportación de Claude Design no las borra. Si un nuevo export cambia el diseño, revisa que
 sigan siendo necesarias.
+
+La única excepción es el componente `Icon` (`components/core/Icon.jsx` y su sección en
+`_ds_bundle.js`). El del export llamaba a `lucide.createIcons()`, que cambia el `<i>` de React por
+un `<svg>`. Al quitar un ícono, por ejemplo al desmarcar un filtro del catálogo, React fallaba y la
+página se quedaba en blanco. Ahora React dibuja el SVG con los datos de lucide, y de paso el corazón de
+favoritos se rellena y el +/− del acordeón cambia. Un nuevo export trae de vuelta la versión
+defectuosa: vuelve a aplicar este cambio (está en el historial de git) y comprueba que al marcar y
+desmarcar filtros la página no se quede en blanco.
 
 ## Actualizar la landing
 
